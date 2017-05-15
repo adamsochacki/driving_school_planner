@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  instructor_id: 1
-  student_id: 1
-  lesson_time: 2017-05-15 10:52:29
+#one:
+#  instructor_id: 1
+#  student_id: 1
+#  lesson_time: 2017-05-15 10:52:29
 
-two:
-  instructor_id: 1
-  student_id: 1
-  lesson_time: 2017-05-15 10:52:29
+#two:
+#  instructor_id: 1
+#  student_id: 1
+#  lesson_time: 2017-05-15 10:52:29
