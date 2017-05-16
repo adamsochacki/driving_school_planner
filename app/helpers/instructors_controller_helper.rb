@@ -1,0 +1,2 @@
+module InstructorsControllerHelper
+end

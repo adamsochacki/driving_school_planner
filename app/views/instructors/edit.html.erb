@@ -1,0 +1,11 @@
+<%= flash[:error] if flash[:error] %>
+<h3> Edycja lekcji</h3>
+<%= form_for(@lesson) do |l| %>
+  <%= l.label :student.full_name %>
+  <%= l.text :student.full_name %>
+  <%= l.label :lesson_time %>
+  <%= l.date_field :lesson_time %>
+  <%= l.label :confirmed %>
+  <%= l.checkbox :confirmed 
+  <%= l.submit "Wyślij" %>
+<% end %>

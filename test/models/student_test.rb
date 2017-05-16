@@ -18,16 +18,6 @@ class StudentTest < ActiveSupport::TestCase
     end
   end
 
-  test "shouldn't be able to arrange a lesson without a datetime" do
-    lesson_without_date = FactoryGirl.build(:lesson, lesson_time: nil)
-    assert !lesson_without_date.valid?
-  end
-
-  test "shouldn't be able to arrange a lesson without an instructior" do
-    lesson_without_instructor = FactoryGirl.build(:lesson, instructor_id: nil)
-    assert !lesson_without_instructor.valid?
-  end
-
   test "student must have a name" do
     student_without_name = FactoryGirl.build(:student, name: nil)
     assert !student_without_name.valid?
