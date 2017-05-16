@@ -2,7 +2,7 @@
 <h3>Nowa lekcja</h3>
 <%= form_for @lesson do |l| %>
   <%= l.label :instructor_id %>
-  <%= l.collection_select :instructor_id, User.all, :id, :email %>
+  <%= l.collection_select :instructor_id, User.all, :id, :full_name %>
   <%= l.label :lesson_time %>
   <%= l.datetime_field :lesson_time %>
   <%= l.label :confirmed %>
