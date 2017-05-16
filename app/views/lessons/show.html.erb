@@ -1,4 +1,5 @@
-<table border="1">
+<table class="table table-striped table-hover ">
+  <thead>
     <tr>
       <th>Imię i nazwisko instruktora</th>
       <th>E-mail instruktora</th>
@@ -7,6 +8,8 @@
       <th>Edycja</th>
       <th>Usunięcie</th>
     </tr>
+  </thead>
+  <tbody>
   <% @lessons.each do |lesson| %>
     <tr>
       <td><%= lesson.instructor.full_name %></td>
@@ -17,4 +20,5 @@
       <td><%= link_to 'Usuń', lesson_path(lesson), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>

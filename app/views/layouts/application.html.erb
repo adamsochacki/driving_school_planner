@@ -6,19 +6,35 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
   </head>
 
-  <body>
-    <p class="navbar-text pull-right">
-      <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-      <% end %>
-    </p>
-    <%= yield %>
+  <body><p class="navbar-text pull-right">
+  <% if user_signed_in? %>
+  <ul class="nav nav-pills">
+  <li class="active"><a href="/">Logged in as <strong><%= current_user.email %></strong>.</a></li>
+  <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'%>
+  </li>
+  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
+  <% else %>
+  <li><% link_to "Sign up", new_user_registration_path, :class => 'navbar-link' %>
+  </li>
+  <li><% link_to "Login", new_user_session_path, :class => 'navbar-link' %>
+  </li>
+<% end %>
+</ul>
+</p>
+
+    </p></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8"><%= yield %></div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </body>
 </html>
