@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   has_many :lessons
   belongs_to :instructor
+  has_one :user
 #  after_create :increment_counter, :send_confirmation_request_to_instructor
 #  after_destroy :decerement_counter
   validates :name, presence: true
