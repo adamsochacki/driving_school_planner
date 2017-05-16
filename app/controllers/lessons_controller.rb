@@ -4,4 +4,8 @@ class LessonsController < ApplicationController
     @lessons = Lessons.all
   end
 
+  def show
+    @lessons = Lessons.all
+  end
+
 end

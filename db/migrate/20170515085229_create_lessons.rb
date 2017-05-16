@@ -4,6 +4,7 @@ class CreateLessons < ActiveRecord::Migration[5.1]
       t.integer :instructor_id
       t.integer :student_id
       t.datetime :lesson_time
+      t.boolean :confirmed
 
       t.timestamps
     end

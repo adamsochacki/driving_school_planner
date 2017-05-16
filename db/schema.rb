@@ -10,34 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515222735) do
+ActiveRecord::Schema.define(version: 20170515085229) do
 
   create_table "instructors", force: :cascade do |t|
     t.string "name"
     t.string "surname"
+    t.string "email"
+    t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email"
-    t.string "full_name"
   end
 
   create_table "lessons", force: :cascade do |t|
     t.integer "instructor_id"
     t.integer "student_id"
     t.datetime "lesson_time"
+    t.boolean "confirmed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "confirmed"
   end
 
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "surname"
     t.integer "hours_driven"
+    t.string "email"
+    t.integer "instructor_id"
+    t.integer "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email"
-    t.string "full_name"
   end
 
 end
