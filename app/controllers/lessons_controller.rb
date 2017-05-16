@@ -9,12 +9,12 @@ class LessonsController < ApplicationController
   end
 
   def new
-    @lesson = current_user.lesson.new
+    @lesson = current_user.lessons.new
   end
 
   def create
-    @lesson = current_user.lesson.new(user_params)
-    if @lesson.save
+    @lesson = current_user.lessons.new(user_params)
+    if @lesson.save!
       flash.now[:notice] = "Lekcja została zapisana"
       redirect_to lessons_path
     else
@@ -39,16 +39,16 @@ class LessonsController < ApplicationController
   end
 
   def destroy
-    lesson = current_user.Lesson.find(params[:id])
+    lesson = Lesson.find(params[:id])
     lesson.destroy
-    flash[:notice] = "Usunięto lekcję #{lesson.datetime}"
+    flash[:notice] = "Usunięto lekcję"
     redirect_to lessons_path
   end
 
   private
 
   def user_params
-    params.require(:lessons).permit(:datetime)
+    params.require(:lesson).permit(:instructor_id, :student_id, :lesson_time, :confirmed)
   end
 
 end

@@ -1,5 +1,6 @@
 class Lesson < ApplicationRecord
-  belongs_to :instructor
-  belongs_to :student
-  validates :lesson_time, :student_id, :instructor_id, presence: true
+  belongs_to :instructor, class_name: "User"
+  belongs_to :student, class_name: "User"
+
+  validates :lesson_time, presence: true
 end

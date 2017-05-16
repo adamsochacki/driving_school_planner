@@ -1,7 +1,0 @@
-<%= flash[:error] if flash[:error] %>
-<h3>Nowa lekcja</h3>
-<%= form_for(@lesson) do |l| %>
-  <%= l.label :lesson_time %>
-  <%= l.date_field :lesson_time %>
-  <%= l.submit "Wyślij zapytanie o lekcję" %>
-<% end %>

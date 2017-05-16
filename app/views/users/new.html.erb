@@ -1,0 +1,11 @@
+<%= flash[:error] if flash[:error] %>
+<h3> Dodanie usera</h3>
+<%= form_for(@user) do |l| %>
+  <%= l.label :email %>
+  <%= l.text_field :email %>
+  <%= l.label :instructor_id %>
+  <%= l.number_field :instructor_id %>
+  <%= l.label :student_id %>
+  <%= l.number_field :student_id %>
+  <%= l.submit "Wyślij zapytanie o lekcję" %>
+<% end %>
