@@ -13,12 +13,10 @@
   <% if user_signed_in? %>
   <ul class="nav nav-pills">
   <li class="active"><a href="/">Logged in as <strong><%= current_user.email %></strong>.</a></li>
-  <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'%>
+  <li><%= link_to 'Edit profile', edit_user_path(current_user), :class => 'navbar-link'%>
   </li>
   <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
   <% else %>
-  <li><% link_to "Sign up", new_user_registration_path, :class => 'navbar-link' %>
-  </li>
   <li><% link_to "Login", new_user_session_path, :class => 'navbar-link' %>
   </li>
 <% end %>

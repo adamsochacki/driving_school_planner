@@ -1,0 +1,14 @@
+<%= flash[:error] if flash[:error] %>
+<h3> Dodanie użytkownika
+</h3>
+<%= form_for(@user, url: usermanagements_path) do |l| %>
+  <%= l.label :full_name %>
+  <%= l.text_field :full_name %>
+  <%= l.label :email %>
+  <%= l.text_field :email %>
+  <%= l.label :password %>
+  <%= l.text_field :password %>
+  <%= l.label :is_an_instructor %>
+  <%= l.check_box :is_an_instructor %>
+  <%= l.submit "Zapisz użytkownika" %>
+<% end %>

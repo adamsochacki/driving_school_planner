@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class InstructorsController < ApplicationController
 
   def index
     @lessons = current_user.lessons.all
@@ -12,13 +12,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-
   def update
     @user = current_user
     if @user.update(user_params)
       flash.now[:notice] = "Zmodyfikowano"
-      redirect_to edit_user_path 
-      ## poprawić ściężkę po stworzeniu widoku dla wszystkim po tej akcji
+      redirect_to lessons_path
     else
       flash[:error] = "Nie udało się zapisać"
       render :edit
