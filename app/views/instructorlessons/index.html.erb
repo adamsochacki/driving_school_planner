@@ -1,23 +1,41 @@
-<h4><%= link_to 'Dodanie lekcji', new_instructorlesson_path %></br></h4>
+<h4><%= link_to 'Dodanie lekcji', new_instructorlesson_path %></h4></br>
+<h4>Lekcje potwierdzone</h4>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Imię i nazwisko kursanta</th>
+      <th>E-mail kursanta</th>
+      <th>Data lekcji</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @confirmed_lessons.each do |lesson| %>
+    <tr>
+      <td><%= lesson.student.full_name %></td>
+      <td><%= lesson.student.email %></td>
+      <td><%= lesson.lesson_time.strftime('%d.%m.%Y %H:%M') %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<h4> Lekcje niepotwierdzone </h4>
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
       <th>Imię i nazwisko kursanta</th>
       <th>E-mail instruktora</th>
       <th>Data lekcji</th>
-      <th>Czy lekcja jest potwierdzona?</th>
-      <th>Edycja</th>
+      <th>Potwierdź lekcję:</th>
       <th>Usunięcie</th>
     </tr>
   </thead>
   <tbody>
-  <% @lessons.each do |lesson| %>
+  <% @unconfirmed_lessons.each do |lesson| %>
     <tr>
       <td><%= lesson.student.full_name %></td>
       <td><%= lesson.student.email %></td>
-      <td><%= lesson.lesson_time.strftime('%d-%m-%Y %H:%M') %></td>
-      <td><%= lesson.confirmed %></td>
-      <td><%= link_to 'Edytuj', edit_instructorlesson_path(lesson)  %></td>
+      <td><%= lesson.lesson_time.strftime('%d.%m.%Y %H:%M') %></td>
+      <td><%= link_to 'Potwierdź', instructorlesson_path(:confirmed => true, id: lesson.id), method: :patch, data: { confirm: "Potwierdzonych lekcji nie można usunąć. Czy jesteś pewien?"}  %></td>
       <td><%= link_to 'Usuń', instructorlesson_path(lesson), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
     </tr>
   <% end %>

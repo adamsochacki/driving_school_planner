@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :lessons
   resources :instructors
+  resources :students
   resources :usermanagements
   resources :instructorlessons
   resources :studentlessons

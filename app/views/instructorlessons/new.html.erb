@@ -1,11 +1,13 @@
 <%= flash[:error] if flash[:error] %>
 <h3>Nowa lekcja</h3>
 <%= form_for(@lesson, url: instructorlessons_path) do |l| %>
+  </p>
+  <p>
   <%= l.label :student_id %>
   <%= l.collection_select :student_id, User.where(is_an_instructor: false ), :id, :full_name %></br>
+  </p>
   <%= l.label :lesson_time %>
-  <%= l.datetime_select :lesson_time, :start_year => 2017 %></br>
-  <%= l.label :confirmed %>
-  <%= l.check_box :confirmed %></br>
+  <%= l.datetime_select :lesson_time, :order => [:day, :month, :year, :hour, :minute], :start_year => 2017, :default => 24.hours.from_now, :minute_step => 60 %>
+  </p>
   <%= l.submit "Wyślij" %>
 <% end %>

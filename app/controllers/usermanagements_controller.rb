@@ -12,7 +12,7 @@ class UsermanagementsController < ApplicationController
   def index
     @users = User.where(is_an_instructor: false)
     @instructors = User.where(is_an_instructor: true)
-    @lessons = current_user.lessons.all
+    @lessons = Lesson.where(confirmed: true)
   end
 
   def show
@@ -25,7 +25,7 @@ class UsermanagementsController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save!
+    if @user.save
       flash.now[:notice] = "Użytkownik został zapisany"
       redirect_to usermanagements_path
     else

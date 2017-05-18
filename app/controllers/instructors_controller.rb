@@ -14,7 +14,7 @@ class InstructorsController < ApplicationController
 
   def create
     @lesson = current_user.lessons.new(user_params)
-    if @lesson.save!
+    if @lesson.save
       flash.now[:notice] = "Lekcja została zapisana"
       redirect_to lessons_path
     else

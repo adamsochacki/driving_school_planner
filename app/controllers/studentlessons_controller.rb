@@ -1,21 +1,21 @@
 class StudentlessonsController < ApplicationController
 
   def index
-    @lessons = current_user.lessons.all
+    @confirmed_lessons = current_user.studentlessons.where(confirmed: true)
+    @unconfirmed_lessons = current_user.studentlessons.where("confirmed = ? OR confirmed IS NULL", false)
   end
 
   def show
-    @lessons = current_user.lessons.all
+    @lessons = current_user.studentlessons.all
   end
 
   def new
-    @lesson = current_user.lessons.new
+    @lesson = current_user.studentlessons.new
   end
 
   def create
-    @lesson = current_user.lessons.new(user_params)
-    @lesson.student_id = current_user.id
-    if @lesson.save!
+    @lesson = current_user.studentlessons.new(user_params)
+    if @lesson.save
       flash.now[:notice] = "Lekcja została zapisana"
       redirect_to studentlessons_path
     else

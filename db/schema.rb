@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518130542) do
+ActiveRecord::Schema.define(version: 20170518155809) do
 
   create_table "lessons", force: :cascade do |t|
     t.integer "instructor_id"
     t.integer "student_id"
     t.datetime "lesson_time"
-    t.boolean "confirmed"
+    t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "student_type"
@@ -35,8 +35,6 @@ ActiveRecord::Schema.define(version: 20170518130542) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "instructor_id"
-    t.integer "student_id"
     t.text "full_name"
     t.boolean "is_an_instructor"
     t.boolean "is_a_manager"

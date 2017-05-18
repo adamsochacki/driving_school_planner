@@ -6,33 +6,49 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-  </head>
-
-  <body><p class="navbar-text pull-right">
-  <% if user_signed_in? %>
-  <ul class="nav nav-pills">
-  <li class="active"><a href="/">Logged in as <strong><%= current_user.email %></strong>.</a></li>
-  <li><%= link_to 'Edit profile', edit_user_path(current_user), :class => 'navbar-link'%>
-  </li>
-  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
-  <% else %>
-  <li><% link_to "Login", new_user_session_path, :class => 'navbar-link' %>
-  </li>
-<% end %>
-</ul>
-</p>
-
-    </p></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-8"><%= yield %></div>
-        <div class="col-md-2"></div>
-      </div>
-    </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <!-- Include Date Range Picker -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+  </head>
+  <body>
+    <p class="navbar-text pull-right">
+      <ul class="nav nav-pills">
+        <% if user_signed_in? %>
+          <li class="active">
+            <a href="/">Logged in as <strong><%= current_user.email %></strong>.</a>
+          </li>
+          <li>
+            <%= link_to 'Edit profile', edit_user_path(current_user), :class => 'navbar-link'%>
+          </li>
+          <li>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+          </li>
+        <% else %>
+          <li>
+            <% link_to "Login", new_user_session_path, :class => 'navbar-link' %>
+          </li>
+        <% end %>
+      </ul>
+    </p>
+ 
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><%= yield %></div>
+    <div class="col-md-2"></div>
+
+
+    <footer>
+      <p class="clear">
+        <div class="well well-lg">
+          <p class="centerized">
+            Created by Adam Sochacki, thanks to CodersLab.
+          </p>
+        </div>
+      </p>
+    </footer>
   </body>
 </html>
