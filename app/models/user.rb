@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :instructor_lessons, as: :instructor
+
+  has_many :instructorlessons, class_name: "Lesson",
+                          foreign_key: "instructor_id"
   has_many :lessons, as: :student
 end

@@ -1,0 +1,9 @@
+<%= flash[:error] if flash[:error] %>
+<h3>Nowa lekcja</h3>
+<%= form_for(@lesson, url: studentlessons_path) do |l| %>
+  <%= l.label :instructor_id %>
+    <%= l.collection_select :instructor_id, User.where(is_an_instructor: true ), :id, :full_name %></br>
+  <%= l.label :lesson_time %>
+  <%= l.datetime_select :lesson_time, :start_year => 2017 %></br>
+  <%= l.submit "Wyślij" %>
+<% end %>

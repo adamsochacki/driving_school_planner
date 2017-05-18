@@ -3,15 +3,16 @@ class UsermanagementsController < ApplicationController
 
   def flag_check
     if !current_user.is_a_manager && !current_user.is_an_instructor
-      redirect_to lessons_path
+      redirect_to studentlessons_path
     elsif !current_user.is_a_manager
-      redirect_to instructors_path
+      redirect_to instructorlessons_path
     end
   end
 
   def index
-    @users = User.all
-    #@usermanagement = users.all
+    @users = User.where(is_an_instructor: false)
+    @instructors = User.where(is_an_instructor: true)
+    @lessons = current_user.lessons.all
   end
 
   def show
@@ -31,6 +32,28 @@ class UsermanagementsController < ApplicationController
       flash[:error] = "Nie udało się zapisać użytkownika"
       render :new
     end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash.now[:notice] = "Zmodyfikowano"
+      redirect_to root_path
+    else
+      flash[:error] = "Nie udało się zapisać"
+      render :edit
+    end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    flash[:notice] = "Usunięto użytkownika"
+    redirect_to usermanagements_path
   end
 
   private

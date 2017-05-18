@@ -1,4 +1,4 @@
-<h4><%= link_to 'Dodanie lekcji', new_lesson_path %></br></h4>
+<h4><%= link_to 'Dodanie lekcji', new_studentlesson_path %></br></h4>
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -6,7 +6,6 @@
       <th>E-mail instruktora</th>
       <th>Data lekcji</th>
       <th>Czy lekcja jest potwierdzona?</th>
-      <th>Edycja</th>
       <th>Usunięcie</th>
     </tr>
   </thead>
@@ -17,8 +16,7 @@
       <td><%= lesson.instructor.email %></td>
       <td><%= lesson.lesson_time.strftime('%d-%m-%Y %H:%M') %></td>
       <td><%= lesson.confirmed %></td>
-      <td><%= link_to 'Edytuj', edit_lesson_path(lesson)  %></td>
-      <td><%= link_to 'Usuń', lesson_path(lesson), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
+      <td><%= link_to 'Usuń', studentlesson_path(lesson), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
     </tr>
   <% end %>
   </tbody>

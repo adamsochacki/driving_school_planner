@@ -3,10 +3,8 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>Imię i nazwisko</th>
+      <th>Imię i nazwisko kursanta</th>
       <th>Email</th>
-      <th>Instruktor?</th>
-      <th>Edycja</th>
       <th>Usunięcie</th>
     </tr>
   </thead>
@@ -15,10 +13,47 @@
       <tr>
         <td><%= user.full_name %></td>
         <td><%= user.email %></td>
-        <td><%= user.is_an_instructor %></td>
-        <td><%= link_to 'Edytuj', edit_usermanagement_path(user)  %></td>
-        <td><%= link_to 'Usuń', user_path(user), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
+        <td><%= link_to 'Usuń', usermanagement_path(user), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
       </tr>
     <% end %>
+  </tbody>
+</table>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Imię i nazwisko instruktora</th>
+      <th>Email</th>
+      <th>Usunięcie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @instructors.each do |instructor| %>
+      <tr>
+        <td><%= instructor.full_name %></td>
+        <td><%= instructor.email %></td>
+        <td><%= link_to 'Usuń', usermanagement_path(instructor), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Imię i nazwisko instruktora</th>
+      <th>Imię i nazwisko kursanta</th>
+      <th>Data lekcji</th>
+      <th>Czy lekcja jest potwierdzona?</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  <% @lessons.each do |lesson| %>
+    <tr>
+      <td><%= lesson.students.full_name %></td>
+      <td><%= lesson.instructors.full_name %></td>
+      <td><%= lesson.lesson_time.strftime('%d-%m-%Y %H:%M') %></td>
+      <td><%= lesson.confirmed %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>

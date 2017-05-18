@@ -1,7 +1,7 @@
 <%= flash[:error] if flash[:error] %>
 <h3> Dodanie użytkownika
 </h3>
-<%= form_for(@user, url: usermanagements_path) do |l| %>
+<%= form_for(@user, url: usermanagement_path) do |l| %>
   <%= l.label :full_name %>
   <%= l.text_field :full_name %>
   <%= l.label :email %>

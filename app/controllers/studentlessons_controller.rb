@@ -1,4 +1,4 @@
-class InstructorsController < ApplicationController
+class StudentlessonsController < ApplicationController
 
   def index
     @lessons = current_user.lessons.all
@@ -14,9 +14,10 @@ class InstructorsController < ApplicationController
 
   def create
     @lesson = current_user.lessons.new(user_params)
+    @lesson.student_id = current_user.id
     if @lesson.save!
       flash.now[:notice] = "Lekcja została zapisana"
-      redirect_to lessons_path
+      redirect_to studentlessons_path
     else
       flash[:error] = "Nie udało się zapisać lekcji"
       render :new
@@ -24,24 +25,32 @@ class InstructorsController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @lesson = Lesson.find(params[:id])
   end
 
   def update
-    @user = current_user
-    if @user.update(user_params)
+    @lesson = Lesson.find(params[:id])
+    if @lesson.update(user_params)
       flash.now[:notice] = "Zmodyfikowano"
-      redirect_to lessons_path
+      redirect_to studentlessons_path
     else
       flash[:error] = "Nie udało się zapisać"
       render :edit
     end
   end
 
+  def destroy
+    lesson = Lesson.find(params[:id])
+    lesson.destroy
+    flash[:notice] = "Usunięto lekcję"
+    redirect_to studentlessons_path
+  end
+
+
   private
 
   def user_params
-    params.require(:user).permit(:student_id, :instructor_id, :lesson_time, :confirmed)
+    params.require(:lesson).permit(:instructor_id, :lesson_time)
   end
 
 end

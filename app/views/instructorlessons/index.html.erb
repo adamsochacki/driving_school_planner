@@ -1,10 +1,10 @@
-<%= link_to 'Dodanie lekcji', new_instructorlesson_path %></br>
-
+<h4><%= link_to 'Dodanie lekcji', new_instructorlesson_path %></br></h4>
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
+      <th>Imię i nazwisko kursanta</th>
+      <th>E-mail instruktora</th>
       <th>Data lekcji</th>
-      <th>Imię i nazwisko instruktora</th>
       <th>Czy lekcja jest potwierdzona?</th>
       <th>Edycja</th>
       <th>Usunięcie</th>
@@ -13,8 +13,9 @@
   <tbody>
   <% @lessons.each do |lesson| %>
     <tr>
-      <td><%= lesson.lesson_time %></td>
       <td><%= lesson.student.full_name %></td>
+      <td><%= lesson.student.email %></td>
+      <td><%= lesson.lesson_time.strftime('%d-%m-%Y %H:%M') %></td>
       <td><%= lesson.confirmed %></td>
       <td><%= link_to 'Edytuj', edit_instructorlesson_path(lesson)  %></td>
       <td><%= link_to 'Usuń', instructorlesson_path(lesson), method: :delete, data: { confirm: "Czy na pewno usunąć?"} %></td>
