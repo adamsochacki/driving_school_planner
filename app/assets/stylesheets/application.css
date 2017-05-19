@@ -14,8 +14,13 @@
  *= require_self
  */
 
+p.clear_main {
+  padding-top: 1em;
+  clear: both;
+}  
+
 p.clear {
-  padding-top: 5em;
+  padding-top: 2em;
   clear: both;
 }  
 

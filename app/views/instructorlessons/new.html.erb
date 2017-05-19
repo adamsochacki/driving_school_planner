@@ -1,5 +1,5 @@
 <%= flash[:error] if flash[:error] %>
-<h3>Nowa lekcja</h3>
+<h3>Add a lesson</h3>
 <%= form_for(@lesson, url: instructorlessons_path) do |l| %>
   </p>
   <p>
@@ -9,5 +9,5 @@
   <%= l.label :lesson_time %>
   <%= l.datetime_select :lesson_time, :order => [:day, :month, :year, :hour, :minute], :start_year => 2017, :default => 24.hours.from_now, :minute_step => 60 %>
   </p>
-  <%= l.submit "Wyślij" %>
+  <%= l.submit "Send" %>
 <% end %>

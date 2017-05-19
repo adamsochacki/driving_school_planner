@@ -1,9 +1,9 @@
 <%= flash[:error] if flash[:error] %>
-<h3> Edycja użytkownika</h3>
+<h3> Edit your profile</h3>
 <%= form_for @user do |l| %>
   <div class="field">
     <%= l.label :email %></br>
     <%= l.text_field :email %>
   </div>
-  <%= l.submit "Zmień" %>
+  <%= l.submit "Send" %>
 <% end %>

@@ -4,10 +4,6 @@ class InstructorsController < ApplicationController
     @lessons = current_user.lessons.all
   end
 
-  def show
-    @lessons = current_user.lessons.all
-  end
-
   def new
     @lesson = current_user.lessons.new
   end
@@ -15,10 +11,10 @@ class InstructorsController < ApplicationController
   def create
     @lesson = current_user.lessons.new(user_params)
     if @lesson.save
-      flash.now[:notice] = "Lekcja została zapisana"
+      flash.now[:notice] = "Lesson has been created"
       redirect_to lessons_path
     else
-      flash[:error] = "Nie udało się zapisać lekcji"
+      flash[:error] = "Lesson can't be created. There is another lesson at this time."
       render :new
     end
   end
@@ -30,10 +26,10 @@ class InstructorsController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      flash.now[:notice] = "Zmodyfikowano"
+      flash.now[:notice] = "Updated successfuly"
       redirect_to lessons_path
     else
-      flash[:error] = "Nie udało się zapisać"
+      flash[:error] = "Changes cannot be saved"
       render :edit
     end
   end

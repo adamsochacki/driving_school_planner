@@ -5,10 +5,6 @@ class StudentlessonsController < ApplicationController
     @unconfirmed_lessons = current_user.studentlessons.where("confirmed = ? OR confirmed IS NULL", false)
   end
 
-  def show
-    @lessons = current_user.studentlessons.all
-  end
-
   def new
     @lesson = current_user.studentlessons.new
   end
@@ -16,33 +12,18 @@ class StudentlessonsController < ApplicationController
   def create
     @lesson = current_user.studentlessons.new(user_params)
     if @lesson.save
-      flash.now[:notice] = "Lekcja została zapisana"
+      flash.now[:notice] = "Lesson has been created"
       redirect_to studentlessons_path
     else
-      flash[:error] = "Nie udało się zapisać lekcji"
+      flash[:error] = "Lesson can't be created. There is another lesson at this time."
       render :new
-    end
-  end
-
-  def edit
-    @lesson = Lesson.find(params[:id])
-  end
-
-  def update
-    @lesson = Lesson.find(params[:id])
-    if @lesson.update(user_params)
-      flash.now[:notice] = "Zmodyfikowano"
-      redirect_to studentlessons_path
-    else
-      flash[:error] = "Nie udało się zapisać"
-      render :edit
     end
   end
 
   def destroy
     lesson = Lesson.find(params[:id])
     lesson.destroy
-    flash[:notice] = "Usunięto lekcję"
+    flash[:notice] = "Lesson has been destroyed"
     redirect_to studentlessons_path
   end
 

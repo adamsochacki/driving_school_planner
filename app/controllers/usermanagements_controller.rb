@@ -15,21 +15,19 @@ class UsermanagementsController < ApplicationController
     @lessons = Lesson.where(confirmed: true)
   end
 
-  def show
-    @lessons = lessons.all
-  end
-
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
+    @user.password = SecureRandom.hex
     if @user.save
-      flash.now[:notice] = "Użytkownik został zapisany"
+      UserMailer.new_user(@user).deliver
+      flash.now[:notice] = "User has been created"
       redirect_to usermanagements_path
     else
-      flash[:error] = "Nie udało się zapisać użytkownika"
+      flash[:error] = "User cannot be saved"
       render :new
     end
   end
@@ -38,21 +36,11 @@ class UsermanagementsController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash.now[:notice] = "Zmodyfikowano"
-      redirect_to root_path
-    else
-      flash[:error] = "Nie udało się zapisać"
-      render :edit
-    end
-  end
-
   def destroy
     user = User.find(params[:id])
     user.destroy
-    flash[:notice] = "Usunięto użytkownika"
+    UserMailer.deleted_user(user).deliver
+    flash[:notice] = "User has been deleted"
     redirect_to usermanagements_path
   end
 

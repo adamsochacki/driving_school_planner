@@ -1,5 +1,5 @@
 <%= flash[:error] if flash[:error] %>
-<h3>Nowa lekcja</h3>
+<h3>Add a lesson</h3>
 <%= form_for(@lesson, url: studentlessons_path) do |l| %>
   <p>
     <%= l.label :instructor_id %>

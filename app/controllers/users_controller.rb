@@ -15,11 +15,11 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      flash.now[:notice] = "Zmodyfikowano"
+      flash.now[:notice] = "Modified"
       redirect_to edit_user_path 
       ## poprawić ściężkę po stworzeniu widoku dla wszystkim po tej akcji
     else
-      flash[:error] = "Nie udało się zapisać"
+      flash[:error] = "Your account has been saved"
       render :edit
     end
   end

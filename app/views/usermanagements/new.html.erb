@@ -1,18 +1,15 @@
 <%= flash[:error] if flash[:error] %>
-<h3> Dodanie użytkownika
+<h3> Create user
 </h3>
 <%= simple_form_for(@user, url: usermanagements_path) do |l| %>
   <p>
-    <%= l.input :full_name, as: :text, label: 'Imię i nazwisko użytkownika', error: 'To pole jest obowiązkowe' %>
+    <%= l.input :full_name, as: :text, label: 'Name and surname', error: 'This field is mandatory' %>
   </p>
   <p>  
-    <%= l.input :email, as: :text, label: 'E-mail użytkownika', error: 'To pole jest obowiązkowe' %>
+    <%= l.input :email, as: :text, label: 'E-mail', error: 'This field is mandatory' %>
   </p>
   <p>  
-    <%= l.input :password %>
-  </p>
-  <p>  
-    <%= l.input :is_an_instructor, label: 'Czy użytkownik jest instruktorem?', as: :boolean %>
+    <%= l.input :is_an_instructor, label: 'Is user an instructor?', as: :boolean %>
   </p> 
-  <%= l.submit "Zapisz użytkownika" %>
+  <%= l.submit "Create user" %>
 <% end %>

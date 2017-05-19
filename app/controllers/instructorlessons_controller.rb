@@ -5,10 +5,6 @@ class InstructorlessonsController < ApplicationController
     @unconfirmed_lessons = current_user.instructorlessons.where("confirmed = ? OR confirmed IS NULL", false)
   end
 
-  def show
-    @lessons = current_user.instructorlessons
-  end
-
   def new
     @lesson = current_user.instructorlessons.new
   end
@@ -17,33 +13,27 @@ class InstructorlessonsController < ApplicationController
     @lesson = current_user.instructorlessons.new(user_params)
     @lesson.instructor_id = current_user.id
     if @lesson.save
-      flash.now[:notice] = "Lekcja została zapisana"
+      flash.now[:notice] = "Lesson has been created"
       redirect_to instructorlessons_path
     else
-      flash[:error] = "Nie udało się zapisać lekcji"
+      flash[:error] = "Lesson time is reserved."
       render :new
     end
   end
 
-  def edit
-    @lesson = Lesson.find(params[:id])
-  end
-
   def update
     @lesson = Lesson.find(params[:id])
-    if #@lessons.update_attributes(params[:confirmed])
-      @lesson.update_attributes(:confirmed => "true")
+    if @lesson.update_attributes(:confirmed => "true")
       redirect_to instructorlessons_path
     else
-      flash[:error] = "Nie udało się potwierdzić lekcji"
-    end    
-  end
-
+      flash[:error] = "Your lesson cannot be confirmed"
+    end
+  end    
 
   def destroy
     lesson = Lesson.find(params[:id])
     lesson.destroy
-    flash[:notice] = "Usunięto lekcję"
+    flash[:notice] = "Lesson has been deleted"
     redirect_to instructorlessons_path
   end
 
